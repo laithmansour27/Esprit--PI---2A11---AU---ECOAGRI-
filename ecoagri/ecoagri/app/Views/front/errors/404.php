@@ -1,0 +1,1 @@
+<section class="container section empty-state"><div class="eyebrow">404 · UNE AUTRE VOIE</div><h1>Cette page est introuvable.</h1><p>L’adresse demandée n’existe pas ou a été déplacée.</p><a class="button" href="<?= e(url('/')) ?>">Retour à l’accueil ↗</a></section>
