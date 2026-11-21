@@ -1,7 +1,7 @@
-# [Titre du Projet]
+# [ECOAGRI]
 
 ## Overview
-This project was developed as part of the [PI] – 3rd Year Engineering Program at **Esprit School of Engineering** (Academic Year 2025–2026).
+This project was developed as part of the [PI] – 2nd Year Engineering Program at **Esprit School of Engineering** (Academic Year 2026–2027).
 [Brève description du projet]
 
 ## Features
@@ -25,7 +25,7 @@ This project was developed as part of the [PI] – 3rd Year Engineering Program 
 
 ### Academic Context
 Developed at **Esprit School of Engineering** – Tunisia
-[PI] – 3A | 2025–2026
+[PI] – 2A | 2026–2027
 
 ### Getting Started
 [Instructions d'installation]
