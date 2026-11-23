@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription — Déchets Agricoles</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    body {
+      background: #f0f7ea;
+      padding: 2rem 1rem;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      padding: 2rem;
+      border: 1px solid #d9e8d0;
+    }
+
+    h1 {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #1e3a1e;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 i {
+      color: #3f7e3f;
+      font-size: 2.4rem;
+    }
+
+    .subhead {
+      color: #3a5e3a;
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      border-left: 5px solid #7fad7f;
+      background: #e8f3e0;
+      border-radius: 0 1rem 1rem 0;
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .subhead i {
+      color: #4c8b4c;
+    }
+
+    .inscription-wrapper {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1000px) {
+      .inscription-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-card {
+      background: #ffffff;
+      border-radius: 1.8rem;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 10px 20px -8px rgba(30, 58, 30, 0.15);
+      border: 1px solid #d0e2c0;
+    }
+
+    .form-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #2c4a2c;
+      margin-bottom: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .form-title i {
+      color: #4c8b4c;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem 1.5rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .field label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #2f4f2f;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .field label i {
+      color: #6b8f6b;
+      font-size: 0.9rem;
+      width: 1.2rem;
+    }
+
+    .field input,
+    .field select {
+      padding: 0.75rem 1rem;
+      border-radius: 1rem;
+      border: 1.5px solid #cfdec5;
+      background: #f9fdf7;
+      font-size: 0.95rem;
+      transition: 0.2s;
+      outline: none;
+      width: 100%;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: #4c8b4c;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(76, 139, 76, 0.15);
+    }
+
+    .password-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .password-wrapper input {
+      padding-right: 2.8rem;
+    }
+
+    .toggle-pass {
+      position: absolute;
+      right: 0.5rem;
+      background: transparent;
+      border: none;
+      color: #6b8f6b;
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: 0.5rem;
+      font-size: 0.95rem;
+      transition: 0.15s;
+    }
+
+    .toggle-pass:hover {
+      background: #e2eed9;
+      color: #1a3a1a;
+    }
+
+    .password-strength {
+      width: 100%;
+      height: 6px;
+      background: #e2eed9;
+      border-radius: 3px;
+      margin-top: 0.4rem;
+      overflow: hidden;
+    }
+
+    .strength-fill {
+      height: 100%;
+      width: 0%;
+      background: #b02a37;
+      border-radius: 3px;
+      transition: width 0.3s, background 0.3s;
+    }
+
+    .hint {
+      font-size: 0.78rem;
+      color: #6b8f6b;
+      margin-top: 0.2rem;
+    }
+
+    .hint.error {
+      color: #b02a37;
+      font-weight: 600;
+    }
+
+    .hint.success {
+      color: #2e6b2e;
+      font-weight: 600;
+    }
+
+    .checkbox-field {
+      margin: 1.5rem 0 1.2rem;
+      padding: 1rem 1.2rem;
+      background: #f9fdf7;
+      border-radius: 1rem;
+      border: 1px solid #d4e6c8;
+    }
+
+    .checkbox-field label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: #2f4f2f;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+
+    .checkbox-field input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: #2e6b2e;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .checkbox-field a {
+      color: #2e6b2e;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .btn-primary {
+      background: #2e6b2e;
+      border: none;
+      padding: 0.85rem 1.8rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 8px 16px -6px #1e3a1e50;
+      border: 1px solid #3f7e3f;
+    }
+
+    .btn-primary:hover {
+      background: #1f4f1f;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background: transparent;
+      color: #6b8f6b;
+      border: 2px solid #cfdec5;
+      padding: 0.8rem 1.6rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: #f0f7ea;
+      border-color: #a6c4a6;
+      color: #1e3a1e;
+    }
+
+    .users-card {
+      max-height: 900px;
+      overflow-y: auto;
+    }
+
+    .count-badge {
+      background: #2e6b2e;
+      color: white;
+      padding: 0.2rem 0.7rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      margin-left: auto;
+    }
+
+    .users-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .user-item {
+      background: #f9fdf7;
+      border: 1px solid #d4e6c8;
+      border-radius: 1rem;
+      padding: 0.9rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: 0.15s;
+    }
+
+    .user-item:hover {
+      background: #f0f7ea;
+      border-color: #a6c4a6;
+    }
+
+    .user-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4c8b4c, #2e6b2e);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+      text-transform: uppercase;
+    }
+
+    .user-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .user-name {
+      font-weight: 600;
+      color: #1e3a1e;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .user-meta {
+      font-size: 0.78rem;
+      color: #6b8f6b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .user-role {
+      display: inline-block;
+      background: #e8f3e0;
+      color: #2c4a2c;
+      padding: 0.15rem 0.55rem;
+      border-radius: 0.6rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-top: 0.2rem;
+    }
+
+    .btn-remove-user {
+      background: transparent;
+      border: none;
+      color: #b02a37;
+      cursor: pointer;
+      padding: 0.35rem;
+      border-radius: 0.5rem;
+      transition: 0.15s;
+      font-size: 0.9rem;
+    }
+
+    .btn-remove-user:hover {
+      background: #f8d7da;
+    }
+
+    .empty-message {
+      padding: 2.5rem 1rem;
+      text-align: center;
+      color: #6b8f6b;
+      font-style: italic;
+      background: #f9fdf7;
+      border-radius: 1.2rem;
+      border: 1px dashed #bcd0ae;
+    }
+
+    .empty-message i {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+      color: #a6c4a6;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #2e6b2e;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 1rem;
+      font-weight: 500;
+      box-shadow: 0 10px 25px -8px rgba(0,0,0,0.3);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      animation: slideIn 0.3s ease;
+      max-width: 90vw;
+    }
+
+    .toast.error {
+      background: #b02a37;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(120%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.5rem; }
+      .container { padding: 1.5rem; border-radius: 2rem; }
+      h1 { font-size: 1.7rem; }
+      .form-card { padding: 1.5rem; }
+      .form-actions { flex-direction: column; }
+      .btn-primary, .btn-secondary { width: 100%; }
+      .toast { left: 1rem; right: 1rem; bottom: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>
+      <i class="fas fa-user-plus"></i>
+      Créer un compte
+    </h1>
+    <div class="subhead">
+      <i class="fas fa-leaf"></i>
+      Inscrivez-vous pour gérer vos déchets et participer aux enchères.
+    </div>
+
+    <div class="inscription-wrapper">
+      <!-- Formulaire -->
+      <div class="form-card">
+        <div class="form-title">
+          <i class="fas fa-id-card"></i>
+          Informations personnelles
+        </div>
+        <form id="registerForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="prenom"><i class="fas fa-user"></i> Prénom</label>
+              <input type="text" id="prenom" placeholder="ex: Ahmed" required>
+            </div>
+            <div class="field">
+              <label for="nom"><i class="fas fa-user"></i> Nom</label>
+              <input type="text" id="nom" placeholder="ex: Ben Ali" required>
+            </div>
+            <div class="field">
+              <label for="email"><i class="fas fa-envelope"></i> Email</label>
+              <input type="email" id="email" placeholder="ex: ahmed@ferme.tn" required>
+            </div>
+            <div class="field">
+              <label for="telephone"><i class="fas fa-phone"></i> Téléphone</label>
+              <input type="tel" id="telephone" placeholder="ex: 20 123 456" required>
+            </div>
+            <div class="field">
+              <label for="role"><i class="fas fa-user-tag"></i> Vous êtes</label>
+              <select id="role" required>
+                <option value="" disabled selected>— Sélectionner —</option>
+                <option value="Utilisateur">Utilisateur</option>
+                <option value="Agriculteur">Agriculteur</option>
+                <option value="Conseilleur">Conseilleur</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="region"><i class="fas fa-map-marker-alt"></i> Région</label>
+              <select id="region" required>
+                <option value="" disabled selected>— Sélectionner —</option>
+                <option value="Tunis">Tunis</option>
+                <option value="Ariana">Ariana</option>
+                <option value="Ben Arous">Ben Arous</option>
+                <option value="Manouba">Manouba</option>
+                <option value="Nabeul">Nabeul</option>
+                <option value="Bizerte">Bizerte</option>
+                <option value="Béja">Béja</option>
+                <option value="Jendouba">Jendouba</option>
+                <option value="Kef">Kef</option>
+                <option value="Siliana">Siliana</option>
+                <option value="Sousse">Sousse</option>
+                <option value="Monastir">Monastir</option>
+                <option value="Mahdia">Mahdia</option>
+                <option value="Sfax">Sfax</option>
+                <option value="Kairouan">Kairouan</option>
+                <option value="Kasserine">Kasserine</option>
+                <option value="Sidi Bouzid">Sidi Bouzid</option>
+                <option value="Gabès">Gabès</option>
+                <option value="Médenine">Médenine</option>
+                <option value="Tataouine">Tataouine</option>
+                <option value="Gafsa">Gafsa</option>
+                <option value="Tozeur">Tozeur</option>
+                <option value="Kébili">Kébili</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-title" style="margin-top: 2rem;">
+            <i class="fas fa-lock"></i>
+            Sécurité du compte
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label for="password"><i class="fas fa-key"></i> Mot de passe</label>
+              <div class="password-wrapper">
+                <input type="password" id="password" placeholder="Min. 6 caractères" required>
+                <button type="button" class="toggle-pass" data-target="password" title="Afficher/Masquer">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <div class="password-strength">
+                <div class="strength-fill" id="strengthFill"></div>
+              </div>
+              <small id="strengthText" class="hint">Force du mot de passe</small>
+            </div>
+            <div class="field">
+              <label for="password2"><i class="fas fa-key"></i> Confirmer</label>
+              <div class="password-wrapper">
+                <input type="password" id="password2" placeholder="Répétez le mot de passe" required>
+                <button type="button" class="toggle-pass" data-target="password2" title="Afficher/Masquer">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <small id="matchText" class="hint">Les mots de passe doivent correspondre</small>
+            </div>
+          </div>
+
+          <div class="checkbox-field">
+            <label>
+              <input type="checkbox" id="cgu" required>
+              J'accepte les <a href="#" onclick="event.preventDefault(); alert('Conditions d\'utilisation — démo');">conditions d'utilisation</a> et la politique de confidentialité.
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">
+              <i class="fas fa-check-circle"></i> S'inscrire
+            </button>
+            <button type="button" class="btn-secondary" id="resetBtn">
+              <i class="fas fa-times"></i> Réinitialiser
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Liste des utilisateurs -->
+      <div class="form-card users-card">
+        <div class="form-title">
+          <i class="fas fa-users"></i>
+          Utilisateurs inscrits
+          <span class="count-badge" id="userCount">0</span>
+        </div>
+        <div id="usersList" class="users-list"></div>
+        <div id="emptyUsers" class="empty-message" style="display:none;">
+          <i class="fas fa-user-slash"></i><br>
+          Aucun utilisateur inscrit pour le moment.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = 'utilisateurs_v1';
+      let users = [];
+
+      function loadUsers() {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          try { users = JSON.parse(stored); } catch (e) { users = []; }
+        } else {
+          users = [];
+        }
+      }
+
+      function saveUsers() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+      }
+
+      const form = document.getElementById('registerForm');
+      const prenomEl = document.getElementById('prenom');
+      const nomEl = document.getElementById('nom');
+      const emailEl = document.getElementById('email');
+      const telEl = document.getElementById('telephone');
+      const roleEl = document.getElementById('role');
+      const regionEl = document.getElementById('region');
+      const passwordEl = document.getElementById('password');
+      const password2El = document.getElementById('password2');
+      const cguEl = document.getElementById('cgu');
+      const strengthFill = document.getElementById('strengthFill');
+      const strengthText = document.getElementById('strengthText');
+      const matchText = document.getElementById('matchText');
+      const usersListEl = document.getElementById('usersList');
+      const emptyUsersEl = document.getElementById('emptyUsers');
+      const userCountEl = document.getElementById('userCount');
+      const resetBtn = document.getElementById('resetBtn');
+
+      function showToast(msg, isError = false) {
+        const toast = document.createElement('div');
+        toast.className = 'toast' + (isError ? ' error' : '');
+        toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-circle' : 'fa-check-circle'}"></i> ${msg}`;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+          toast.style.transition = 'opacity 0.4s, transform 0.4s';
+          toast.style.opacity = '0';
+          toast.style.transform = 'translateX(120%)';
+          setTimeout(() => toast.remove(), 400);
+        }, 2800);
+      }
+
+      document.querySelectorAll('.toggle-pass').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.getAttribute('data-target');
+          const input = document.getElementById(targetId);
+          const isPassword = input.type === 'password';
+          input.type = isPassword ? 'text' : 'password';
+          btn.innerHTML = `<i class="fas ${isPassword ? 'fa-eye-slash' : 'fa-eye'}"></i>`;
+        });
+      });
+
+      function checkStrength() {
+        const val = passwordEl.value;
+        let score = 0;
+        if (val.length >= 6) score++;
+        if (val.length >= 10) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+
+        let width = 0, color = '#b02a37', label = 'Force du mot de passe';
+        if (val.length === 0) { width = 0; label = 'Force du mot de passe'; color = '#b02a37'; }
+        else if (score <= 1) { width = 25; color = '#b02a37'; label = 'Faible'; }
+        else if (score === 2) { width = 50; color = '#f0b400'; label = 'Moyen'; }
+        else if (score === 3) { width = 75; color = '#4c8b4c'; label = 'Bon'; }
+        else { width = 100; color = '#2e6b2e'; label = 'Excellent'; }
+
+        strengthFill.style.width = width + '%';
+        strengthFill.style.background = color;
+        strengthText.textContent = label;
+        strengthText.style.color = color;
+        strengthText.className = 'hint';
+      }
+
+      function checkMatch() {
+        if (!password2El.value) {
+          matchText.textContent = 'Les mots de passe doivent correspondre';
+          matchText.className = 'hint';
+          return;
+        }
+        if (passwordEl.value === password2El.value) {
+          matchText.textContent = '✓ Les mots de passe correspondent';
+          matchText.className = 'hint success';
+        } else {
+          matchText.textContent = '✗ Les mots de passe ne correspondent pas';
+          matchText.className = 'hint error';
+        }
+      }
+
+      passwordEl.addEventListener('input', () => { checkStrength(); checkMatch(); });
+      password2El.addEventListener('input', checkMatch);
+
+      function getInitials(prenom, nom) {
+        return ((prenom[0] || '') + (nom[0] || '')).toUpperCase();
+      }
+
+      function renderUsers() {
+        userCountEl.textContent = users.length;
+        if (users.length === 0) {
+          usersListEl.innerHTML = '';
+          emptyUsersEl.style.display = 'block';
+          return;
+        }
+        emptyUsersEl.style.display = 'none';
+        let html = '';
+        [...users].reverse().forEach(u => {
+          html += `
+            <div class="user-item">
+              <div class="user-avatar">${getInitials(u.prenom, u.nom)}</div>
+              <div class="user-info">
+                <div class="user-name">${u.prenom} ${u.nom}</div>
+                <div class="user-meta"><i class="fas fa-envelope"></i> ${u.email}</div>
+                <div class="user-meta"><i class="fas fa-map-marker-alt"></i> ${u.region}</div>
+                <span class="user-role">${u.role}</span>
+              </div>
+              <button class="btn-remove-user" data-id="${u.id}" title="Supprimer">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          `;
+        });
+        usersListEl.innerHTML = html;
+        usersListEl.querySelectorAll('.btn-remove-user').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            if (confirm('Supprimer cet utilisateur ?')) {
+              users = users.filter(u => u.id !== id);
+              saveUsers();
+              renderUsers();
+              showToast('Utilisateur supprimé.');
+            }
+          });
+        });
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const prenom = prenomEl.value.trim();
+        const nom = nomEl.value.trim();
+        const email = emailEl.value.trim().toLowerCase();
+        const telephone = telEl.value.trim();
+        const role = roleEl.value;
+        const region = regionEl.value;
+        const password = passwordEl.value;
+        const password2 = password2El.value;
+
+        if (!prenom) { showToast('Prénom requis.', true); prenomEl.focus(); return; }
+        if (!nom) { showToast('Nom requis.', true); nomEl.focus(); return; }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          showToast('Email invalide.', true); emailEl.focus(); return;
+        }
+        if (!telephone || telephone.replace(/\D/g, '').length < 8) {
+          showToast('Téléphone invalide (8 chiffres min).', true); telEl.focus(); return;
+        }
+        if (!role) { showToast('Sélectionnez votre profil.', true); roleEl.focus(); return; }
+        if (!region) { showToast('Sélectionnez votre région.', true); regionEl.focus(); return; }
+        if (password.length < 6) {
+          showToast('Mot de passe trop court (6 caractères min).', true); passwordEl.focus(); return;
+        }
+        if (password !== password2) {
+          showToast('Les mots de passe ne correspondent pas.', true); password2El.focus(); return;
+        }
+        if (!cguEl.checked) {
+          showToast("Vous devez accepter les conditions d'utilisation.", true); return;
+        }
+        if (users.some(u => u.email === email)) {
+          showToast('Un compte existe déjà avec cet email.', true); emailEl.focus(); return;
+        }
+
+        const newUser = {
+          id: 'U' + Date.now() + Math.random().toString(36).substring(2, 6),
+          prenom, nom, email, telephone, role, region,
+          passwordHash: btoa(password),
+          dateInscription: new Date().toISOString()
+        };
+        users.push(newUser);
+        saveUsers();
+        renderUsers();
+        showToast(`Bienvenue ${prenom} ! Inscription réussie.`);
+
+        form.reset();
+        strengthFill.style.width = '0%';
+        strengthText.textContent = 'Force du mot de passe';
+        strengthText.className = 'hint';
+        matchText.textContent = 'Les mots de passe doivent correspondre';
+        matchText.className = 'hint';
+        prenomEl.focus();
+      });
+
+      resetBtn.addEventListener('click', () => {
+        form.reset();
+        strengthFill.style.width = '0%';
+        strengthText.textContent = 'Force du mot de passe';
+        strengthText.className = 'hint';
+        matchText.textContent = 'Les mots de passe doivent correspondre';
+        matchText.className = 'hint';
+      });
+
+      loadUsers();
+      renderUsers();
+    })();
+  </script>
+</body>
+</html>
