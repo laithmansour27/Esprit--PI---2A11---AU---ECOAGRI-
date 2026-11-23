@@ -1,34 +1,55 @@
-# [ECOAGRI]
+# ECOAGRI
+
+Guide détaillé pour rédiger un bon README sur GitHub pour le module projet technologies web 2A.
+
+## Table des Matières
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Utilisation](#utilisation)
+- [Contributions](#contributions)
+- [Licence](#licence)
+- [Academic Context](#academic-context)
 
 ## Overview
-This project was developed as part of the [PI] – 2nd Year Engineering Program at **Esprit School of Engineering** (Academic Year 2026–2027).
-[Brève description du projet]
-
-## Features
-- Fonctionnalité 1
-- Fonctionnalité 2
-- Fonctionnalité 3
+This project was developed as part of the PI – 2nd Year Engineering Program at **Esprit School of Engineering** (Academic Year 2026–2027).
+Il s'agit d'une application web full-stack permettant de [décrire brièvement ce que fait votre projet].
 
 ## Tech Stack
-### Frontend
-- [Technologie]
+- **Frontend** : React.js / Angular / Vue.js
+- **Backend** : Node.js / PHP / Spring Boot
+- **Base de données** : MongoDB / MySQL
 
-### Backend
-- [Technologie]
+## Installation
 
-### Architecture
-- [Description de l'architecture]
+1. Clonez le repository :
+   ```bash
+   git clone https://github.com/votre-utilisateur/votre-projet.git
+   cd votre-projet# Nom de Votre Projet (ex: SmartTask)
 
-### Contributors
-- [Nom 1]
-- [Nom 2]
+Guide détaillé pour rédiger un bon README sur GitHub pour le module projet technologies web 2A.
 
-### Academic Context
-Developed at **Esprit School of Engineering** – Tunisia
-[PI] – 2A | 2026–2027
+## Table des Matières
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Utilisation](#utilisation)
+- [Contributions](#contributions)
+- [Licence](#licence)
+- [Academic Context](#academic-context)
 
-### Getting Started
-[Instructions d'installation]
+## Overview
+This project was developed as part of the PI – 2nd Year Engineering Program at **Esprit School of Engineering** (Academic Year 2026–2027).
+Il s'agit d'une application web full-stack permettant de [décrire brièvement ce que fait votre projet].
 
-### Acknowledgments
-[Remerciements]
+## Tech Stack
+- **Frontend** : React.js / Angular / Vue.js
+- **Backend** : Node.js / PHP / Spring Boot
+- **Base de données** : MongoDB / MySQL
+
+## Installation
+
+1. Clonez le repository :
+   ```bash
+   git clone https://github.com/votre-utilisateur/votre-projet.git
+   cd votre-projet
