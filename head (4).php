@@ -1,0 +1,1 @@
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="ECOAGRI : votre espace de gestion agricole durable."><title><?= e($title ?? 'Accueil') ?> | ECOAGRI</title><link rel="icon" href="<?= e(asset('images/logo.svg')) ?>" type="image/svg+xml"><link rel="stylesheet" href="<?= e(asset('css/app.css')) ?>">

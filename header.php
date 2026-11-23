@@ -1,0 +1,1 @@
+<header class="dashboard-header"><span>Espace de gestion <span class="muted">/ <?= e($title) ?></span></span><div class="profile"><div><strong><?= e($user['nom']) ?></strong><small><?= e(ucfirst($user['nom_role'])) ?></small></div><span class="avatar"><?= e(strtoupper(substr($user['nom'],0,1))) ?></span></div></header>
