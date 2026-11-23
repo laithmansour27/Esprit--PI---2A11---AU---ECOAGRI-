@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enchères de déchets agricoles</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-encheres.css">
+</head>
+<body>
+  <div class="container">
+    <h1>
+      <i class="fas fa-gavel"></i>
+      Enchères de déchets agricoles
+    </h1>
+    <div class="subhead">
+      <i class="fas fa-clock" style="margin-right: 8px;"></i>
+      Chaque enchère dure <strong>1 heure</strong> — le plus offrant remporte le lot !
+      <a href="index.html" class="nav-link">
+        <i class="fas fa-arrow-left"></i> Gestion des déchets
+      </a>
+    </div>
+
+    <!-- Formulaire de création d'enchère -->
+    <div class="form-card">
+      <div class="form-title">
+        <i class="fas fa-plus-circle"></i>
+        Mettre un déchet aux enchères
+      </div>
+      <form id="auctionForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="aType"><i class="fas fa-tractor"></i> Type de déchet</label>
+            <select id="aType" required>
+              <option value="" disabled selected>— Sélectionner —</option>
+              <option value="Déchets verts">Déchets verts</option>
+              <option value="Résidus de culture">Résidus de culture</option>
+              <option value="Fumier / lisier">Fumier / lisier</option>
+              <option value="Déchets plastiques">Déchets plastiques</option>
+              <option value="Emballages">Emballages</option>
+              <option value="Huiles / lubrifiants">Huiles / lubrifiants</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="aQuantite"><i class="fas fa-weight-hanging"></i> Quantité (kg)</label>
+            <input type="number" id="aQuantite" min="1" step="1" placeholder="ex: 200" required>
+          </div>
+          <div class="field">
+            <label for="aPrixDepart"><i class="fas fa-coins"></i> Prix de départ (DT)</label>
+            <input type="number" id="aPrixDepart" min="1" step="1" placeholder="ex: 50" required>
+          </div>
+          <div class="field">
+            <label for="aVendeur"><i class="fas fa-user"></i> Votre nom</label>
+            <input type="text" id="aVendeur" placeholder="ex: Ferme Ben Ali" required>
+          </div>
+          <div class="field">
+            <button type="submit" class="btn-primary">
+              <i class="fas fa-gavel"></i> Lancer l'enchère
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Liste des enchères -->
+    <div class="auction-header">
+      <h2><i class="fas fa-list"></i> Enchères en cours et terminées</h2>
+      <span id="activeCount" class="active-badge">0 active(s)</span>
+    </div>
+
+    <div id="auctionList" class="auction-grid"></div>
+
+    <div id="emptyAuctions" class="empty-message" style="display:none;">
+      <i class="fas fa-gavel"></i><br>
+      Aucune enchère pour le moment. Lancez la première !
+    </div>
+  </div>
+
+  <div class="assistant-widget">
+    <button class="assistant-toggle" id="assistantToggle" type="button" aria-controls="assistantPanel" aria-expanded="false">
+      <i class="fas fa-comments" aria-hidden="true"></i>
+      <span>Besoin d’aide ?</span>
+    </button>
+    <section class="assistant-panel" id="assistantPanel" role="dialog" aria-modal="false" aria-labelledby="assistantTitle" hidden>
+      <header class="assistant-header">
+        <div>
+          <h2 id="assistantTitle">Assistant d’aide</h2>
+          <p>Déchets agricoles et enchères</p>
+        </div>
+        <button class="assistant-close" id="assistantClose" type="button" aria-label="Fermer l’aide">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </header>
+      <p class="assistant-note">Aide intégrée : vos messages restent dans votre navigateur.</p>
+      <div class="assistant-messages" id="assistantMessages" aria-live="polite" aria-relevant="additions text">
+        <p class="assistant-message is-assistant">Bonjour ! Je peux vous guider pour ajouter un déchet agricole, créer une enchère ou faire une offre.</p>
+      </div>
+      <div class="assistant-actions" id="assistantActions" aria-label="Aide rapide">
+        <button type="button" data-prompt="Comment ajouter un nouveau déchet agricole ?">Ajouter un déchet</button>
+        <button type="button" data-prompt="Comment créer une enchère ?">Créer une enchère</button>
+        <button type="button" data-prompt="Comment faire une offre ?">Faire une offre</button>
+      </div>
+      <form class="assistant-question" id="assistantForm">
+        <label class="assistant-sr-only" for="assistantInput">Votre question</label>
+        <input id="assistantInput" type="text" maxlength="4000" placeholder="Posez votre question…" autocomplete="off" required>
+        <button type="submit" aria-label="Envoyer la question">
+          <i class="fas fa-paper-plane" aria-hidden="true"></i>
+        </button>
+      </form>
+    </section>
+  </div>
+
+  <script src="script-encheres.js"></script>
+  <script src="assistant.js"></script>
+</body>
+</html>
