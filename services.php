@@ -1,1 +1,0 @@
-<section class="container section"><div class="eyebrow">LES SOLUTIONS ECOAGRI</div><h1>Chaque ressource compte.</h1><p class="intro">Six modules complémentaires pour relier les décisions du terrain à une gestion plus responsable.</p><?php require __DIR__.'/../includes/modules.php'; ?><p class="muted">Les fonctionnalités accessibles dépendent de votre rôle.</p></section>
