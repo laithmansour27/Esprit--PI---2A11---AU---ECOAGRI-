@@ -1,1 +1,0 @@
-<section class="panel empty-state"><h1>Un espace adapté à votre rôle.</h1><p>Ce module n’est pas accessible avec votre compte.</p><a class="button" href="<?= e(url('/dashboard')) ?>">Retour au tableau de bord</a></section>
